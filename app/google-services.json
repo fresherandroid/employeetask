@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "223722054508",
+    "firebase_url": "https://taskassignment-311bb.firebaseio.com",
+    "project_id": "taskassignment-311bb",
+    "storage_bucket": "taskassignment-311bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223722054508:android:0b05ac768d1a7b82250949",
+        "android_client_info": {
+          "package_name": "com.example.taskassignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223722054508-b0qjhfsiu6siml5mlgnt7ju85po5l88g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.taskassignment",
+            "certificate_hash": "75f637540b871b619b48959de5d8ea64c71826a4"
+          }
+        },
+        {
+          "client_id": "223722054508-0vh4oud9ltcpb9p1ppemjhv2spg5cs9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI_oOHd-TqFrKgAyoKnwaatNeXvu_-mSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223722054508-0vh4oud9ltcpb9p1ppemjhv2spg5cs9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
