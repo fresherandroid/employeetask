@@ -28,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     Spinner roleSelector;
     Button signUp, alreadyRegistered;
     private FirebaseAuth mAuth;
-    DatabaseReference myRef;
+    private DatabaseReference myRef;
     String roleSelected;
 
     @Override
@@ -124,8 +124,14 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
         // Go to MainActivity
         finish();
-        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-        startActivity(intent);
+        if(roleSelected.equalsIgnoreCase("Manager")) {
+            Intent intent = new Intent(SignUpActivity.this, ManagerActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(SignUpActivity.this, EmployeeActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void writeNewUser(String userId, String email, String role) {
