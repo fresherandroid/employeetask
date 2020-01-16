@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -26,6 +28,8 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     Spinner roleSelector;
     Button signUp, alreadyRegistered;
     private FirebaseAuth mAuth;
+    DatabaseReference myRef;
+    String roleSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_sign_up);
 
         mAuth = FirebaseAuth.getInstance();
+        myRef = FirebaseDatabase.getInstance().getReference();
 
         roleSelector = findViewById(R.id.spinner_role_selector);
         roleSelector.setOnItemSelectedListener(this);
@@ -72,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(SignUpActivity.this, roles[position], Toast.LENGTH_SHORT).show();
+       roleSelected = roles[position];
     }
 
     @Override
@@ -90,9 +95,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
                             Toast.makeText(SignUpActivity.this, "Authentication successful.",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            finish();
-                            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                            startActivity(intent);
+                            onAuthSuccess(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(SignUpActivity.this, "Authentication failed.",
@@ -113,5 +116,20 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
             return false;
         }
         else return true;
+    }
+
+    private void onAuthSuccess(FirebaseUser user) {
+        // Write new user
+        writeNewUser(user.getUid(), user.getEmail(), roleSelected);
+
+        // Go to MainActivity
+        finish();
+        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void writeNewUser(String userId, String email, String role) {
+        User user = new User(email, role);
+        myRef.child("users").child(userId).setValue(user);
     }
 }
