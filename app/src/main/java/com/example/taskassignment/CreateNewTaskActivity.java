@@ -19,7 +19,7 @@ public class CreateNewTaskActivity extends AppCompatActivity {
     Button save;
     private FirebaseUser currentUser;
     private DatabaseReference myRef;
-    int taskId = 0;
+    static int taskId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
