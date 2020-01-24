@@ -3,6 +3,9 @@ package com.example.taskassignment;
 public class Task {
     public String taskName;
     public String createdByUser;
+    public String assignedToUser;
+    public String taskStatus;
+    public String timeStampTask;
 
     public Task() {
         // Default constructor required for calls to DataSnapshot.getValue(Task.class)

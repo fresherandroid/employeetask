@@ -19,7 +19,6 @@ public class CreateNewTaskActivity extends AppCompatActivity {
     Button save;
     private FirebaseUser currentUser;
     private DatabaseReference myRef;
-    static int taskId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,6 @@ public class CreateNewTaskActivity extends AppCompatActivity {
 
     public void createTaskInFirebase(String taskCreated) {
         Task task = new Task(taskCreated, currentUser.getUid());
-        myRef.child("tasks").child(String.valueOf(taskId)).setValue(task);
-        taskId++;
+        myRef.child("tasks").push().setValue(task);
     }
 }

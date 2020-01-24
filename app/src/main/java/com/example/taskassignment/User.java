@@ -4,6 +4,7 @@ public class User {
 
     public String role;
     public String email;
+    public String timeStampUser;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)

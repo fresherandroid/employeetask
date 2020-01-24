@@ -78,8 +78,9 @@ public class HomeFragment extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 homeTasks.clear();
-                for (int i = 0; i < dataSnapshot.getChildrenCount(); i++) {
-                    Task task = dataSnapshot.child(String.valueOf(i)).getValue(Task.class);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Task task = snapshot.getValue(Task.class);
+                    if (task != null)
                     homeTasks.add(task);
                     homeAdapter = new MyAdapter(homeTasks);
                     recyclerView.setAdapter(homeAdapter);
