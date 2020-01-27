@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taskassignment.CreateNewTaskActivity;
 import com.example.taskassignment.EmployeeActivity;
+import com.example.taskassignment.ManagerActivity;
 import com.example.taskassignment.MyAdapter;
 import com.example.taskassignment.R;
 import com.example.taskassignment.Task;
@@ -80,8 +81,14 @@ public class HomeFragment extends Fragment {
                 homeTasks.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Task task = snapshot.getValue(Task.class);
-                    if (task != null)
-                    homeTasks.add(task);
+                    if (task != null) {
+                        if(getActivity() instanceof ManagerActivity) {
+                            if (task.createdByUser.equalsIgnoreCase(mAuth.getCurrentUser().getUid())) {
+                            }
+                            else continue;
+                        }
+                        homeTasks.add(task);
+                    }
                     homeAdapter = new MyAdapter(homeTasks);
                     recyclerView.setAdapter(homeAdapter);
                 }
