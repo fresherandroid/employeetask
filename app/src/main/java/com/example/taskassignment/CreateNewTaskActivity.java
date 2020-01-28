@@ -13,6 +13,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CreateNewTaskActivity extends AppCompatActivity {
 
     EditText createNewTask;
@@ -32,7 +35,9 @@ public class CreateNewTaskActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createTaskInFirebase(createNewTask.getText().toString());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+                String format = simpleDateFormat.format(new Date());
+                createTaskInFirebase(createNewTask.getText().toString(), format);
 //                finish();
 //                Intent intent = new Intent(CreateNewTaskActivity.this, MainActivity.class);
 //                startActivity(intent);
@@ -40,8 +45,8 @@ public class CreateNewTaskActivity extends AppCompatActivity {
         });
     }
 
-    public void createTaskInFirebase(String taskCreated) {
-        Task task = new Task(taskCreated, currentUser.getUid());
+    public void createTaskInFirebase(String taskCreated, String timeStamp) {
+        Task task = new Task(taskCreated, currentUser.getUid(), timeStamp);
         myRef.child("tasks").push().setValue(task);
     }
 }

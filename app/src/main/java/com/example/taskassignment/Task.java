@@ -11,8 +11,9 @@ public class Task {
         // Default constructor required for calls to DataSnapshot.getValue(Task.class)
     }
 
-    public Task(String taskName, String createdByUser) {
+    public Task(String taskName, String createdByUser, String timeStampTask) {
         this.taskName = taskName;
         this.createdByUser = createdByUser;
+        this.timeStampTask = timeStampTask;
     }
 }
