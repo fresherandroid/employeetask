@@ -3,6 +3,7 @@ package com.example.taskassignment;
 public class Task {
     public String taskName;
     public String createdByUser;
+    public String requestedByUser;
     public String assignedToUser;
     public String taskStatus;
     public String timeStampTask;
@@ -15,5 +16,10 @@ public class Task {
         this.taskName = taskName;
         this.createdByUser = createdByUser;
         this.timeStampTask = timeStampTask;
+        this.requestedByUser = "";
+        this.assignedToUser = "";
+        this.taskStatus = "Pending";
     }
+
+
 }
