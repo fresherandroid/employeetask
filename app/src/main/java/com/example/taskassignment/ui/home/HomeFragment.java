@@ -82,6 +82,7 @@ public class HomeFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Task task = snapshot.getValue(Task.class);
                     if (task != null) {
+                        task.setTaskID(snapshot.getKey());
                         if(getActivity() instanceof ManagerActivity) {
                             if (task.createdByUser.equalsIgnoreCase(mAuth.getCurrentUser().getUid())) {
                             }

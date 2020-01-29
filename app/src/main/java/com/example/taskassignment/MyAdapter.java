@@ -1,5 +1,7 @@
 package com.example.taskassignment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +48,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             @Override
             public void onClick(View v) {
                 // Create the functionality
+                if(v.getContext() instanceof EmployeeActivity) {
+                    Intent intent = new Intent(v.getContext(), RequestTaskActivity.class);
+                    intent.putExtra("taskId", myTasks.get(holder.getAdapterPosition()).taskID);
+                    v.getContext().startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(v.getContext(), ApproveTaskActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+
 
             }
         });

@@ -1,6 +1,7 @@
 package com.example.taskassignment;
 
 public class Task {
+    public String taskID;
     public String taskName;
     public String createdByUser;
     public String requestedByUser;
@@ -21,5 +22,7 @@ public class Task {
         this.taskStatus = "Pending";
     }
 
-
+    public void setTaskID(String taskID) {
+        this.taskID = taskID;
+    }
 }
