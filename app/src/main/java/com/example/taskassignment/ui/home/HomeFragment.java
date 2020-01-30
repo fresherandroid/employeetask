@@ -88,7 +88,9 @@ public class HomeFragment extends Fragment {
                             }
                             else continue;
                         }
-                        homeTasks.add(task);
+                        if(task.taskStatus.equalsIgnoreCase("pending")) {
+                            homeTasks.add(task);
+                        }
                     }
                     homeAdapter = new MyAdapter(homeTasks);
                     recyclerView.setAdapter(homeAdapter);

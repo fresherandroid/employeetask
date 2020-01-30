@@ -65,6 +65,7 @@ public class ApproveTaskActivity extends AppCompatActivity {
                 //Write to database
                 myRef.child(taskId).child("requestedByUser").setValue("");
                 myRef.child(taskId).child("assignedToUser").setValue(assignToUser);
+                myRef.child(taskId).child("taskStatus").setValue("Approved");
                 Toast.makeText(getApplicationContext(), "Approved", Toast.LENGTH_SHORT).show();
             }
         });
