@@ -73,11 +73,15 @@ public class NotificationsFragment extends Fragment {
                             }
                             else continue;
                         }
+                        else {
+                            if (task.assignedToUser.equalsIgnoreCase(mAuth.getCurrentUser().getUid())) {
+                            } else continue;
+                        }
                         if(task.taskStatus.equalsIgnoreCase("completed")) {
                             completedTasks.add(task);
                         }
                     }
-                    completedAdapter = new MyAdapter(completedTasks);
+                    completedAdapter = new MyAdapter(completedTasks, "Completed");
                     recyclerView.setAdapter(completedAdapter);
                 }
             }

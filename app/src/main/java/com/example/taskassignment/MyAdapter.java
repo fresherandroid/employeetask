@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -24,9 +25,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     }
 
     private List<Task> myTasks;
+    private String fragment;
 
-    public MyAdapter(List<Task> myTasks) {
+    public MyAdapter(List<Task> myTasks, String fragment) {
         this.myTasks = myTasks;
+        this.fragment = fragment;
     }
 
     @Override
@@ -51,11 +54,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 if(v.getContext() instanceof EmployeeActivity) {
                     Intent intent = new Intent(v.getContext(), RequestTaskActivity.class);
                     intent.putExtra("taskId", myTasks.get(holder.getAdapterPosition()).taskID);
+                    intent.putExtra("fragment", fragment);
                     v.getContext().startActivity(intent);
                 }
                 else {
                     Intent intent = new Intent(v.getContext(), ApproveTaskActivity.class);
                     intent.putExtra("taskId", myTasks.get(holder.getAdapterPosition()).taskID);
+                    intent.putExtra("fragment", fragment);
                     v.getContext().startActivity(intent);
                 }
 

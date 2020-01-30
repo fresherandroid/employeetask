@@ -76,11 +76,16 @@ public class DashboardFragment extends Fragment {
                             }
                             else continue;
                         }
+                        else {
+                            if (task.assignedToUser.equalsIgnoreCase(mAuth.getCurrentUser().getUid())) {
+                            }
+                            else continue;
+                        }
                         if(task.taskStatus.equalsIgnoreCase("approved")) {
                             approvedTasks.add(task);
                         }
                     }
-                    approvedAdapter = new MyAdapter(approvedTasks);
+                    approvedAdapter = new MyAdapter(approvedTasks, "Approved");
                     recyclerView.setAdapter(approvedAdapter);
                 }
             }

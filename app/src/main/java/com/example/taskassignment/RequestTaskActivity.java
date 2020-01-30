@@ -20,7 +20,7 @@ public class RequestTaskActivity extends AppCompatActivity {
 
     TextView taskName, createdByUser, timeStamp;
     Button requestForTask;
-    String taskId;
+    String taskId, fragmentName;
     private FirebaseAuth mAuth;
     private DatabaseReference myRef, myUserRef;
 
@@ -30,6 +30,7 @@ public class RequestTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_request_task);
         Bundle bundle = getIntent().getExtras();
         taskId = bundle.getString("taskId");
+        fragmentName = bundle.getString("fragment");
 
         mAuth = FirebaseAuth.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference("tasks");
@@ -58,14 +59,31 @@ public class RequestTaskActivity extends AppCompatActivity {
             }
         });
 
+        if(fragmentName.equalsIgnoreCase("approved")) {
+            requestForTask.setText("Completed");
+        }
+        if(fragmentName.equalsIgnoreCase("Completed")) {
+            requestForTask.setVisibility(View.INVISIBLE);
+        }
+
         requestForTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Write to database
-                myRef.child(taskId).child("requestedByUser").setValue(mAuth.getCurrentUser().getUid());
-                Toast.makeText(getApplicationContext(), "Request Successful", Toast.LENGTH_SHORT).show();
+                if(fragmentName.equalsIgnoreCase("pending")) {
+                    myRef.child(taskId).child("requestedByUser").setValue(mAuth.getCurrentUser().getUid());
+                    Toast.makeText(getApplicationContext(), "Request Successful", Toast.LENGTH_SHORT).show();
+
+                }
+                else if(fragmentName.equalsIgnoreCase("Approved")) {
+                    myRef.child(taskId).child("taskStatus").setValue("Completed");
+                    Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+                }
+                finish();
+
             }
         });
+
     }
 
     public void getUserEmail(String createdBy) {

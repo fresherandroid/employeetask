@@ -38,7 +38,7 @@ public class CreateNewTaskActivity extends AppCompatActivity {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
                 String format = simpleDateFormat.format(new Date());
                 createTaskInFirebase(createNewTask.getText().toString(), format);
-//                finish();
+                finish();
 //                Intent intent = new Intent(CreateNewTaskActivity.this, MainActivity.class);
 //                startActivity(intent);
             }

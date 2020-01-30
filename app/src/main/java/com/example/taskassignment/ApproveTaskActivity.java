@@ -20,7 +20,7 @@ public class ApproveTaskActivity extends AppCompatActivity {
 
     TextView taskName, requestedByUser, timeStamp;
     Button approveTask, reject;
-    String taskId, assignToUser;
+    String taskId, fragmentName, assignToUser;
     private FirebaseAuth mAuth;
     private DatabaseReference myRef, myUserRef;
 
@@ -30,6 +30,7 @@ public class ApproveTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_approve_task);
         Bundle bundle = getIntent().getExtras();
         taskId = bundle.getString("taskId");
+        fragmentName = bundle.getString("fragment");
 
         mAuth = FirebaseAuth.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference("tasks");
@@ -48,7 +49,12 @@ public class ApproveTaskActivity extends AppCompatActivity {
                 Task task = dataSnapshot.getValue(Task.class);
                 if(task != null) {
                     taskName.setText(task.taskName);
-                    getUserEmail(task.requestedByUser);
+                    if(fragmentName.equalsIgnoreCase("pending")) {
+                        getUserEmail(task.requestedByUser);
+                    }
+                    else {
+                        getUserEmail(task.assignedToUser);
+                    }
                     timeStamp.setText(task.timeStampTask);
                     assignToUser = task.requestedByUser;
                 }
@@ -67,6 +73,7 @@ public class ApproveTaskActivity extends AppCompatActivity {
                 myRef.child(taskId).child("assignedToUser").setValue(assignToUser);
                 myRef.child(taskId).child("taskStatus").setValue("Approved");
                 Toast.makeText(getApplicationContext(), "Approved", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
@@ -76,8 +83,13 @@ public class ApproveTaskActivity extends AppCompatActivity {
                 myRef.child(taskId).child("requestedByUser").setValue("");
                 myRef.child(taskId).child("assignedToUser").setValue("");
                 Toast.makeText(getApplicationContext(), "Rejected", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
+        if(!fragmentName.equalsIgnoreCase("pending")) {
+            approveTask.setVisibility(View.INVISIBLE);
+            reject.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void getUserEmail(String requestedBy) {

@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment {
                             homeTasks.add(task);
                         }
                     }
-                    homeAdapter = new MyAdapter(homeTasks);
+                    homeAdapter = new MyAdapter(homeTasks, "Pending");
                     recyclerView.setAdapter(homeAdapter);
                 }
             }
