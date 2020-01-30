@@ -55,6 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 }
                 else {
                     Intent intent = new Intent(v.getContext(), ApproveTaskActivity.class);
+                    intent.putExtra("taskId", myTasks.get(holder.getAdapterPosition()).taskID);
                     v.getContext().startActivity(intent);
                 }
 
