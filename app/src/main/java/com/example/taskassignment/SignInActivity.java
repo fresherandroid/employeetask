@@ -45,10 +45,9 @@ public class SignInActivity extends AppCompatActivity {
                 password = findViewById(R.id.password_sign_in);
                 Toast.makeText(SignInActivity.this, "Authentication processing.",
                         Toast.LENGTH_SHORT).show();
-                if(checkCredentials(email.getText().toString(), password.getText().toString())) {
+                if (checkCredentials(email.getText().toString(), password.getText().toString())) {
                     signIn(email.getText().toString(), password.getText().toString());
-                }
-                else {
+                } else {
                     Toast.makeText(SignInActivity.this, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -87,13 +86,11 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public boolean checkCredentials(String email, String password) {
-        if(email == null || password == null) {
+        if (email == null || password == null) {
             return false;
-        }
-        else if(password.length() < 8) {
+        } else if (password.length() < 8) {
             return false;
-        }
-        else return true;
+        } else return true;
     }
 
     private void onAuthSuccess(FirebaseUser user) {
@@ -107,11 +104,10 @@ public class SignInActivity extends AppCompatActivity {
                 Log.d(TAG, "Value is: " + role);
                 // Go to MainActivity
                 finish();
-                if(role.equalsIgnoreCase("Manager")) {
+                if (role.equalsIgnoreCase("Manager")) {
                     Intent intent = new Intent(SignInActivity.this, ManagerActivity.class);
                     startActivity(intent);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(SignInActivity.this, EmployeeActivity.class);
                     startActivity(intent);
                 }

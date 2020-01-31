@@ -46,7 +46,7 @@ public class RequestTaskActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.;
                 Task task = dataSnapshot.getValue(Task.class);
-                if(task != null) {
+                if (task != null) {
                     taskName.setText(task.taskName);
                     getUserEmail(task.createdByUser);
                     timeStamp.setText(task.timeStampTask);
@@ -59,10 +59,10 @@ public class RequestTaskActivity extends AppCompatActivity {
             }
         });
 
-        if(fragmentName.equalsIgnoreCase("approved")) {
+        if (fragmentName.equalsIgnoreCase("approved")) {
             requestForTask.setText("Completed");
         }
-        if(fragmentName.equalsIgnoreCase("Completed")) {
+        if (fragmentName.equalsIgnoreCase("Completed")) {
             requestForTask.setVisibility(View.INVISIBLE);
         }
 
@@ -70,12 +70,11 @@ public class RequestTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Write to database
-                if(fragmentName.equalsIgnoreCase("pending")) {
+                if (fragmentName.equalsIgnoreCase("pending")) {
                     myRef.child(taskId).child("requestedByUser").setValue(mAuth.getCurrentUser().getUid());
                     Toast.makeText(getApplicationContext(), "Request Successful", Toast.LENGTH_SHORT).show();
 
-                }
-                else if(fragmentName.equalsIgnoreCase("Approved")) {
+                } else if (fragmentName.equalsIgnoreCase("Approved")) {
                     myRef.child(taskId).child("taskStatus").setValue("Completed");
                     Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
                 }

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 //            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
 //            startActivity(intent);
 //        }
-        Log.e("TEST","Test commit");
+        Log.e("TEST", "Test commit");
     }
 
     private void onAuthSuccess(FirebaseUser user) {
@@ -51,11 +51,10 @@ public class MainActivity extends AppCompatActivity {
                 String role = dataSnapshot.getValue(String.class);
                 // Go to MainActivity
                 finish();
-                if(role.equalsIgnoreCase("Manager")) {
+                if (role.equalsIgnoreCase("Manager")) {
                     Intent intent = new Intent(MainActivity.this, ManagerActivity.class);
                     startActivity(intent);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(MainActivity.this, EmployeeActivity.class);
                     startActivity(intent);
                 }

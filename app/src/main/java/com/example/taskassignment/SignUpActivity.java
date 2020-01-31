@@ -41,7 +41,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
         roleSelector = findViewById(R.id.spinner_role_selector);
         roleSelector.setOnItemSelectedListener(this);
-        ArrayAdapter dropDownList = new ArrayAdapter(SignUpActivity.this,android.R.layout.simple_spinner_item,roles);
+        ArrayAdapter dropDownList = new ArrayAdapter(SignUpActivity.this, android.R.layout.simple_spinner_item, roles);
         dropDownList.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         roleSelector.setAdapter(dropDownList);
 
@@ -54,10 +54,9 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
                 confirmPassword = findViewById(R.id.confirm_password_sign_up);
                 Toast.makeText(SignUpActivity.this, "Authentication processing.",
                         Toast.LENGTH_SHORT).show();
-                if(checkCredentials(email.getText().toString(), password.getText().toString(), confirmPassword.getText().toString())) {
+                if (checkCredentials(email.getText().toString(), password.getText().toString(), confirmPassword.getText().toString())) {
                     createAccount(email.getText().toString(), password.getText().toString());
-                }
-                else {
+                } else {
                     Toast.makeText(SignUpActivity.this, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -77,7 +76,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-       roleSelected = roles[position];
+        roleSelected = roles[position];
     }
 
     @Override
@@ -106,16 +105,13 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     public boolean checkCredentials(String email, String password, String confirmPassword) {
-        if(email == null || password == null || confirmPassword == null) {
+        if (email == null || password == null || confirmPassword == null) {
             return false;
-        }
-        else if(password.length() < 8) {
+        } else if (password.length() < 8) {
             return false;
-        }
-        else if(!password.equals(confirmPassword)) {
+        } else if (!password.equals(confirmPassword)) {
             return false;
-        }
-        else return true;
+        } else return true;
     }
 
     private void onAuthSuccess(FirebaseUser user) {
@@ -124,11 +120,10 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
         // Go to MainActivity
         finish();
-        if(roleSelected.equalsIgnoreCase("Manager")) {
+        if (roleSelected.equalsIgnoreCase("Manager")) {
             Intent intent = new Intent(SignUpActivity.this, ManagerActivity.class);
             startActivity(intent);
-        }
-        else {
+        } else {
             Intent intent = new Intent(SignUpActivity.this, EmployeeActivity.class);
             startActivity(intent);
         }

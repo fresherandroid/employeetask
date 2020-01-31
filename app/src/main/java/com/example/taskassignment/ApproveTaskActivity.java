@@ -47,12 +47,11 @@ public class ApproveTaskActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.;
                 Task task = dataSnapshot.getValue(Task.class);
-                if(task != null) {
+                if (task != null) {
                     taskName.setText(task.taskName);
-                    if(fragmentName.equalsIgnoreCase("pending")) {
+                    if (fragmentName.equalsIgnoreCase("pending")) {
                         getUserEmail(task.requestedByUser);
-                    }
-                    else {
+                    } else {
                         getUserEmail(task.assignedToUser);
                     }
                     timeStamp.setText(task.timeStampTask);
@@ -86,7 +85,7 @@ public class ApproveTaskActivity extends AppCompatActivity {
                 finish();
             }
         });
-        if(!fragmentName.equalsIgnoreCase("pending")) {
+        if (!fragmentName.equalsIgnoreCase("pending")) {
             approveTask.setVisibility(View.INVISIBLE);
             reject.setVisibility(View.INVISIBLE);
         }
@@ -97,7 +96,7 @@ public class ApproveTaskActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String userEmail = dataSnapshot.getValue(String.class);
-                if(userEmail != null) {
+                if (userEmail != null) {
                     requestedByUser.setText(userEmail);
                 }
             }

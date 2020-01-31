@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView showTask;
@@ -45,19 +45,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder,final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.showTask.setText(myTasks.get(position).taskName);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Create the functionality
-                if(v.getContext() instanceof EmployeeActivity) {
+                if (v.getContext() instanceof EmployeeActivity) {
                     Intent intent = new Intent(v.getContext(), RequestTaskActivity.class);
                     intent.putExtra("taskId", myTasks.get(holder.getAdapterPosition()).taskID);
                     intent.putExtra("fragment", fragment);
                     v.getContext().startActivity(intent);
-                }
-                else {
+                } else {
                     Intent intent = new Intent(v.getContext(), ApproveTaskActivity.class);
                     intent.putExtra("taskId", myTasks.get(holder.getAdapterPosition()).taskID);
                     intent.putExtra("fragment", fragment);

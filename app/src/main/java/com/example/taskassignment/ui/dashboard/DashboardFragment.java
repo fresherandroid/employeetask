@@ -71,17 +71,16 @@ public class DashboardFragment extends Fragment {
                     Task task = snapshot.getValue(Task.class);
                     if (task != null) {
                         task.setTaskID(snapshot.getKey());
-                        if(getActivity() instanceof ManagerActivity) {
-                            if (task.createdByUser.equalsIgnoreCase(mAuth.getCurrentUser().getUid())) {
+                        if (getActivity() instanceof ManagerActivity) {
+                            if (!task.createdByUser.equalsIgnoreCase(mAuth.getCurrentUser().getUid())) {
+                                continue;
                             }
-                            else continue;
-                        }
-                        else {
-                            if (task.assignedToUser.equalsIgnoreCase(mAuth.getCurrentUser().getUid())) {
+                        } else {
+                            if (!task.assignedToUser.equalsIgnoreCase(mAuth.getCurrentUser().getUid())) {
+                                continue;
                             }
-                            else continue;
                         }
-                        if(task.taskStatus.equalsIgnoreCase("approved")) {
+                        if (task.taskStatus.equalsIgnoreCase("approved")) {
                             approvedTasks.add(task);
                         }
                     }
