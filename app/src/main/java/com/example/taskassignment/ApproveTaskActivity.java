@@ -68,10 +68,15 @@ public class ApproveTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Write to database
-                myRef.child(taskId).child("requestedByUser").setValue("");
-                myRef.child(taskId).child("assignedToUser").setValue(assignToUser);
-                myRef.child(taskId).child("taskStatus").setValue("Approved");
-                Toast.makeText(getApplicationContext(), "Approved", Toast.LENGTH_SHORT).show();
+                if (assignToUser.length()<2) {
+                    Toast.makeText(getApplicationContext(), "No request", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    myRef.child(taskId).child("requestedByUser").setValue("");
+                    myRef.child(taskId).child("assignedToUser").setValue(assignToUser);
+                    myRef.child(taskId).child("taskStatus").setValue("Approved");
+                    Toast.makeText(getApplicationContext(), "Approved", Toast.LENGTH_SHORT).show();
+                }
                 finish();
             }
         });
@@ -79,9 +84,14 @@ public class ApproveTaskActivity extends AppCompatActivity {
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myRef.child(taskId).child("requestedByUser").setValue("");
-                myRef.child(taskId).child("assignedToUser").setValue("");
-                Toast.makeText(getApplicationContext(), "Rejected", Toast.LENGTH_SHORT).show();
+                if (assignToUser.length()<2) {
+                    Toast.makeText(getApplicationContext(), "No request", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    myRef.child(taskId).child("requestedByUser").setValue("");
+                    myRef.child(taskId).child("assignedToUser").setValue("");
+                    Toast.makeText(getApplicationContext(), "Rejected", Toast.LENGTH_SHORT).show();
+                }
                 finish();
             }
         });

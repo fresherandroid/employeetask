@@ -35,7 +35,7 @@ public class CreateNewTaskActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh-mm-ss");
                 String format = simpleDateFormat.format(new Date());
                 createTaskInFirebase(createNewTask.getText().toString(), format);
                 finish();

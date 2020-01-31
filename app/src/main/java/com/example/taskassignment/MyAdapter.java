@@ -17,10 +17,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView showTask;
+        private TextView taskCreated;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             this.showTask = itemView.findViewById(R.id.task);
+            this.taskCreated = itemView.findViewById(R.id.task_created);
         }
     }
 
@@ -47,6 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.showTask.setText(myTasks.get(position).taskName);
+        holder.taskCreated.setText(myTasks.get(position).timeStampTask);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
