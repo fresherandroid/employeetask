@@ -25,19 +25,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        mAuth = FirebaseAuth.getInstance();
-//        myRef = FirebaseDatabase.getInstance().getReference("users");
-//
-//        // Check if User is already logged in
-//        currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null) {
-//            onAuthSuccess(currentUser);
-//        }
-//        else {
-//            finish();
-//            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
-//            startActivity(intent);
-//        }
+        mAuth = FirebaseAuth.getInstance();
+        myRef = FirebaseDatabase.getInstance().getReference("users");
+
+        // Check if User is already logged in
+        currentUser = mAuth.getCurrentUser();
+        if(currentUser != null) {
+            onAuthSuccess(currentUser);
+        }
+        else {
+            finish();
+            Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+            startActivity(intent);
+        }
         Log.e("TEST", "Test commit");
     }
 

@@ -16,19 +16,24 @@
         <activity android:name=".CreateNewTaskActivity" />
         <activity
             android:name=".ManagerActivity"
-            android:label="@string/title_activity_manager" />
+            android:label="@string/title_activity_manager"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".EmployeeActivity"
-            android:label="@string/title_activity_employee" />
+            android:label="@string/title_activity_employee"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignInActivity">
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
